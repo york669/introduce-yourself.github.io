@@ -1662,28 +1662,18 @@ input, select, textarea {
 		table {
 		            width: 100%;
 		            border-collapse: collapse;
-		            background-color: #ffffff;
-		            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		            border-radius: 10px;
-		            overflow: hidden;
+		            
 		        }
 		        th, td {
-		            padding: 20px;
+		            padding: 12px;
 		            text-align: left;
+				
 		        }
-		        th {
-		            background-color: #4f46e5;
-		            color: white;
-		            font-size: 1.2em;
-		        }
-		        tr:nth-child(even) {
-		            background-color: #f9fafb;
-		        }
-		        h3 {
-		            margin-bottom: 5px;
-		            color: #4f46e5;
-		        }
+		        
 		        ul {
 		            margin: 0;
 		            padding-left: 20px;
 		        }
+			ul li {
+				margin: 4px 0;                 
+			}	
