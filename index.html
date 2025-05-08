@@ -131,104 +131,10 @@
 							<article id="about">
 								<h2 class="major">爬蟲</h2>
 								<P>因為喜歡戴資穎，所以我嘗試透過網頁爬蟲技術來收集她的主要比賽成績，並整理成結構化資料。我使用 BeautifulSoup 分析比賽成績的 HTML 表格，逐一提取年份、賽事名稱、級別、項目與成績，最後匯出成 CSV 檔案，方便後續分析與查詢。</P>
+								<h3>程式碼</h3>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>"""
-Created on Fri May  9 06:33:45 2025
-
-@author: a0989
-"""
-
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
-from webdriver_manager.chrome import ChromeDriverManager
-import pandas as pd
-
-def get_tai_tzu_ying_career_stats():
-   
-    # 瀏覽器設定
-    options = webdriver.ChromeOptions()
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options
-    )
-    
-    try:
-        # 啟動
-        driver.get("https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5")
-        driver.maximize_window()
-
-        # 搜尋關鍵字
-        search_box = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "input.cdx-text-input__input"))
-        )
-        search_box.send_keys("戴资颖")
-        search_box.send_keys(Keys.ENTER)
-
-        time.sleep(2)
-
-        # 滾動到表格位置
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "主要比賽成績"))
-        )
-        driver.execute_script("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element)
-        time.sleep(2)
-        
-        # 定位表格
-        table = driver.find_elements(By.CLASS_NAME, "wikitable")[1]
-        
-        # 提取數據
-        data = []
-        current_year = ""
-        
-        for row in table.find_elements(By.TAG_NAME, "tr")[1:]:  # 跳过表头
-            cells = row.find_elements(By.TAG_NAME, "td")
-            ths = row.find_elements(By.TAG_NAME, "th")
-            
-            # 處理年份
-            if len(ths) > 0:
-                current_year = ths[0].text
-            
-            # 提取比赛信息
-            if len(cells) >= 4:  # 确保是行
-                event = cells[0].text
-                level = cells[1].text
-                category = cells[2].text
-                result = cells[3].text
-                
-                data.append([current_year, event, level, category, result])
-        
-        # 轉為DataFrame
-        df = pd.DataFrame(data, columns=["年份", "赛事", "级别", "项目", "成绩"])
-        return df
-    
-    except Exception as e:
-        print(f"发生错误: {str(e)}")
-        return None
-    finally:
-        driver.quit()
-
-# 使用示例
-if __name__ == "__main__":
-    print("正在获取戴资颖比赛数据...")
-    df = get_tai_tzu_ying_career_stats()
-    
-    if df is not None:
-        
-        print("\n最新5场比赛：")
-        print(df.head())
-        
-        # 保存結果
-        df.to_csv(r"‪C:\Users\User\Desktop\戴資穎比賽成績.csv", index=False, encoding="utf-8-sig")
-        print("\n已保存到：戴资颖比赛记录.csv")
-    else:
-        print("获取数据失败")</p>
+								<p>
+									
 							</article>
 
 						<!-- Contact -->
