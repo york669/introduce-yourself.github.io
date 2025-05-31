@@ -129,9 +129,18 @@
 
 						<!-- About -->
 							<article id="about">
-								<h2 class="major">爬蟲</h2>
-								<P>因為喜歡戴資穎，所以我嘗試透過網頁爬蟲技術來收集她的主要比賽成績，並整理成結構化資料。我使用網路爬蟲分析比賽成績的 HTML 表格，逐一提取年份、賽事名稱、級別、項目與成績，最後匯出一個年度獎牌數折線圖(CSV 檔案)。<br><a href="https://zh.wikipedia.org/wiki/%E6%88%B4%E8%B3%87%E7%A9%8E">維基百科戴資穎</a></P>
-								<h3>程式碼</h3>
+								<h2 class="major"> 網頁爬蟲成果</h2>
+								<P>本專案使用 Python 的 Selenium 套件，爬取<a href="https://zh.wikipedia.org/wiki/%E6%88%B4%E8%B3%87%E7%A9%8E" target="_blank">維基百科「戴資穎」條目</a>中的比賽成績表格資料，並將其轉換為結構化的資料表，再以圖表方式呈現各年度的成績統計情形。</p>
+
+								<h2>📈 資料處理流程</h2>
+								  <ol>
+								    <li>自動開啟瀏覽器並搜尋「戴資穎」</li>
+								    <li>載入網頁中的比賽成績表格</li>
+								    <li>擷取年度、賽事、級別、項目、成績等欄位資料</li>
+								    <li>建立結構化資料表並儲存為 <code>CSV</code> 檔案</li>
+								    <li>分析每年度各項成績出現次數並繪製折線圖</li>
+								  </ol>
+															
 								<span class="image main"><img src="images/程式碼3.jpg" alt="" /></span>
 								<span class="image main"><img src="images/網頁1.jpg" alt="" /></span>
 								<span class="image main"><img src="images/網頁2.jpg" alt="" /></span>
